@@ -38,7 +38,40 @@ impl Block {
         nonce: u64,
         prev_hash: &str,
     ) -> String {
-        //computes hash
-        data 
+        let input = format!("{}{}{}{}{}", index, timestamp, data, prev_hash, nonce);
+        let mut hasher = Sha256::new();
+        hasher.update(input.as_bytes());
+        hex::encode(hasher.finalize());
+    }
+
+    pub fn is_valid(&self) -> bool {
+        let expected = Self::compute_hash(
+            self.index, self.timestamp, self.data, self.prev_hash, self.nonce
+        );
+
+        self.hash == expected
+
+    }
+}
+
+//Unit test
+
+#[cfg(test)]
+
+mod tests {
+    use super::*;
+
+    #[test]
+
+    fn test_block_is_valid() {
+        let block = Block::new(0, "genesis".to_string(), "0".to_string());
+        assert!(block.is_valid());
+    }
+
+    #[test]
+    fn test_tampered_block_is_invalid() {
+        let mut block = Block::new(1, "data".to_string(), "abc".to_string());
+        block.data = "tampered".to_string(); // change data without recomputing hash
+        assert!(!block.is_valid());
     }
 }
