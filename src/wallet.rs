@@ -1,5 +1,6 @@
 use ed25519_dalek::{SigningKey, VerifyingKey, Signature, Signer, Verifier};
 use rand::rngs::OsRng;
+use std::fs;
 
 
 //proves who you are
@@ -34,6 +35,19 @@ impl Wallet {
         let key_array: [u8; 32] = pubkey_bytes.try_into().expect("Invalid key length");
         let verifying_key = VerifyingKey::from_bytes(&key_array).expect("Invalid key");
         verifying_key.verify(message, signature).is_ok()
+    }
+
+    pub fn save(&self, path: &str) {
+        let privkey_hex = hex::encode(self.signing_key.to_bytes());
+        fs::write(path, privkey_hex).expect("Failed to save wallet");
+    }
+    pub fn load(path: &str) -> Self {
+        let privkey_hex = fs::read_to_string(path).expect("Wallet file not found");
+        let bytes = hex::decode(privkey_hex.trim()).expect("Invalid key hex");
+        let key_array: [u8; 32] = bytes.try_into().expect("Invalid key length");
+        let signing_key = SigningKey::from_bytes(&key_array);
+        let verifying_key = signing_key.verifying_key();
+        Wallet { signing_key, verifying_key }
     }
 }
 

@@ -20,7 +20,6 @@ enum Commands {
     Wallet,
     /// Send coins (creates and signs a transaction)
     Send {
-        #[arg(long)] from_privkey: String,
         #[arg(long)] to: String,
         #[arg(long)] amount: f64,
     },
@@ -30,8 +29,9 @@ enum Commands {
 fn main() {
     let cli = Cli::parse();
     let chain_path = "chain.json";
+    let mempool_path = "mempool.json";
     let mut bc = Blockchain::load(chain_path);
-    let mut mempool = Mempool::new();
+    let mut mempool = Mempool::load(mempool_path);
 
     match cli.command {
         Commands::Mine => {
@@ -39,19 +39,22 @@ fn main() {
             println!("Mining block with {} transactions...", txs.len());
             bc.add_block(txs);
             bc.save(chain_path);
+            mempool.save(mempool_path);
             println!("Block mined! Chain length: {}", bc.chain.len());
         }
         Commands::Wallet => {
             let w = Wallet::new();
-            println!("New wallet address: {}", w.address());
+            w.save("wallet.json");
+            println!("Address:     {}", w.address());
+            println!("Wallet saved to wallet.json");
         }
-        Commands::Send { from_privkey: _, to, amount } => {
-            //simplified does not load private key
-            let sender_wallet = Wallet::new();
+        Commands::Send { to, amount } => {
+            let sender_wallet = Wallet::load("wallet.json"); // load your real wallet
             let mut tx = Transaction::new(sender_wallet.address(), to, amount);
             tx.sign(&sender_wallet);
             if mempool.add(tx) {
-                println!("Transaction added to mempool");
+                mempool.save(mempool_path);
+                println!("Transaction sent from {}", &sender_wallet.address()[..8]);
             } else {
                 println!("Transaction invalid — rejected");
             }
