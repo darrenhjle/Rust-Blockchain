@@ -14,16 +14,16 @@ struct Cli {
 
 #[derive(Subcommand)]
 enum Commands {
-    /// Mine a new block from pending transactions
+    // Mine a new block from pending transactions
     Mine,
-    /// Create a new wallet and print its address
+    // Create a new wallet and print its address
     Wallet,
-    /// Send coins (creates and signs a transaction)
+    // Send coins (creates and signs a transaction)
     Send {
         #[arg(long)] to: String,
         #[arg(long)] amount: f64,
     },
-    /// Print the current chain
+    // Print the current chain
     Print,
 }
 fn main() {
@@ -66,3 +66,4 @@ fn main() {
         }
     }
 }
+

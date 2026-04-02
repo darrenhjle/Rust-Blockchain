@@ -25,3 +25,10 @@
 - [x] Chain serializes to chain.json
 - [x] Chain loads from chain.json on startup
 - [x] End-to-end flow works
+
+## Future extentsions
+- P2P networking with tokio + TCP
+- Merkle tree for transactions
+- UTXO balance model
+- Adjustable difficulty retargeting like BTC 2-week adjustment
+- REST API

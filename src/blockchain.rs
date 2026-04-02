@@ -14,6 +14,12 @@ pub struct Blockchain {
     pub difficulty: usize,
 }
 
+impl Default for Blockchain {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl Blockchain {
     pub fn new() -> Self {
         let genesis = Block::new(0, "genesis".to_string(), "0".to_string());

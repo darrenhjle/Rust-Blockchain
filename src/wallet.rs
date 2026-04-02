@@ -11,6 +11,12 @@ pub struct Wallet {
     pub verifying_key: VerifyingKey, //public key
 }
 
+impl Default for Wallet {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl Wallet {
     pub fn new() -> Self {
         let signing_key = SigningKey::generate(&mut OsRng);
