@@ -15,13 +15,13 @@
 
 ## Phase 3 — Wallets & Transactions
 - [x] Key pair generation works
-- [ ] Transaction struct defined
-- [ ] Signing and verification works
-- [ ] Mempool stores pending transactions
-- [ ] All Phase 3 tests pass
+- [x] Transaction struct defined
+- [x] Signing and verification works
+- [x] Mempool stores pending transactions
+- [x] All Phase 3 tests pass
 
 ## Phase 4 — CLI & Persistence
-- [ ] clap CLI with mine/balance/send commands
-- [ ] Chain serializes to chain.json
-- [ ] Chain loads from chain.json on startup
-- [ ] End-to-end flow works
+- [x] clap CLI with mine/balance/send commands
+- [x] Chain serializes to chain.json
+- [x] Chain loads from chain.json on startup
+- [x] End-to-end flow works
