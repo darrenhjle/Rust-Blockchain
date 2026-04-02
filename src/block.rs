@@ -27,7 +27,7 @@ impl Block {
     pub fn new(index: u64, data: String, prev_hash: String) -> Self {
         let timestamp = Utc::now().timestamp();
         let nonce = 0;
-        let hash = Self.compute_hash(index, timestamp, &data, nonce, &prev_hash);
+        let hash = Self::compute_hash(index, timestamp, &data, &prev_hash, nonce);
 
         Block {index, timestamp, data, nonce, prev_hash, hash }
     }
@@ -35,18 +35,19 @@ impl Block {
     pub fn compute_hash(index: u64, 
         timestamp: i64,
         data: &str,
-        nonce: u64,
         prev_hash: &str,
+        nonce: u64,
     ) -> String {
         let input = format!("{}{}{}{}{}", index, timestamp, data, prev_hash, nonce);
         let mut hasher = Sha256::new();
         hasher.update(input.as_bytes());
-        hex::encode(hasher.finalize());
+
+        hex::encode(hasher.finalize())
     }
 
     pub fn is_valid(&self) -> bool {
         let expected = Self::compute_hash(
-            self.index, self.timestamp, self.data, self.prev_hash, self.nonce
+            self.index, self.timestamp, &self.data, &self.prev_hash, self.nonce
         );
 
         self.hash == expected
