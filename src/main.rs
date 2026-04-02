@@ -49,7 +49,7 @@ fn main() {
             println!("Wallet saved to wallet.json");
         }
         Commands::Send { to, amount } => {
-            let sender_wallet = Wallet::load("wallet.json"); // load your real wallet
+            let sender_wallet = Wallet::load("wallet.json"); // load saved wallet
             let mut tx = Transaction::new(sender_wallet.address(), to, amount);
             tx.sign(&sender_wallet);
             if mempool.add(tx) {
