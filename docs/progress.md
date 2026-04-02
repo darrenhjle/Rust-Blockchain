@@ -1,14 +1,14 @@
 # Progress Tracker
 
 ## Phase 1 — Block & Hashing
-- [ ] Block struct defined
-- [ ] SHA-256 hashing works
-- [ ] Genesis block creates correctly
-- [ ] All Phase 1 tests pass
+- [x] Block struct defined
+- [x] SHA-256 hashing works
+- [x] Genesis block creates correctly
+- [x] All Phase 1 tests pass
 
 ## Phase 2 — Blockchain & PoW
-- [ ] Blockchain struct with Vec<Block>
-- [ ] add_block() implemented
+- [x] Blockchain struct with Vec<Block>
+- [x] add_block() implemented
 - [ ] Proof of Work mining loop works
 - [ ] Chain validation works
 - [ ] All Phase 2 tests pass
