@@ -8,13 +8,14 @@ use serde::{Serialize, Deserialize};
 
 pub struct Blockchain {
     pub chain: Vec<Block>,
+    pub difficulty: usize,
 }
 
 impl Blockchain {
     pub fn new() -> Self {
         let genesis = Block::new(0, "genesis".to_string(), "0".to_string());
 
-        Blockchain {chain :vec![genesis]} // creates vector and puts genesis block inside of it
+        Blockchain {chain :vec![genesis], difficulty: 3} // creates vector and puts genesis block inside of it
     }
 
     pub fn last_block(&self) -> &Block {
@@ -24,8 +25,8 @@ impl Blockchain {
     pub fn add_block(&mut self, data: String) {
         let prev_hash = self.last_block().hash.clone();
         let index = self.chain.len() as u64;
-        let block = Block::new(index, data, prev_hash);
-
+        let mut block = Block::new(index, data, prev_hash);
+        block.mine(self.difficulty);
         self.chain.push(block);
     }
 
@@ -44,6 +45,7 @@ impl Blockchain {
         true
     }
 }
+
 
 #[cfg(test)]
 
@@ -72,6 +74,14 @@ mod tests {
         bc.add_block("Block_2".to_string());
         bc.chain[1].data = "tampered".to_string();
         assert!(!bc.is_valid());
+    }
+
+    #[test]
+    fn test_pow() {
+        let mut bc = Blockchain::new();
+        bc.add_block("Block 1".to_string());
+        let target = "0".repeat(bc.difficulty);
+        assert!(bc.last_block().hash.starts_with(&target));
     }
 
 }

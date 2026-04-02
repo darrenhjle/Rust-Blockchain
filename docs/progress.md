@@ -9,9 +9,9 @@
 ## Phase 2 — Blockchain & PoW
 - [x] Blockchain struct with Vec<Block>
 - [x] add_block() implemented
-- [ ] Proof of Work mining loop works
-- [ ] Chain validation works
-- [ ] All Phase 2 tests pass
+- [x] Proof of Work mining loop works
+- [x] Chain validation works
+- [x] All Phase 2 tests pass
 
 ## Phase 3 — Wallets & Transactions
 - [ ] Key pair generation works

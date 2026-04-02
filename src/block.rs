@@ -53,7 +53,22 @@ impl Block {
         self.hash == expected
 
     }
+
+    //Proof of work portion
+    //Target is a string of zeros, number of zeros is determined by the difficulty
+    //Increases the nonce by 1 until the computed hash starts with the same nubmer of zeros as the target
+    pub fn mine(&mut self, difficulty: usize) {
+        let target = "0".repeat(difficulty);
+        while !self.hash.starts_with(&target) {
+            self.nonce += 1;
+            self.hash = Self::compute_hash(self.index, self.timestamp, &self.data, &self.prev_hash, self.nonce);
+        }
+        println!("Mined block {} | nonce: {} | hash: {}", self.index, self.nonce, &self.hash[..10]);
+
+    }
 }
+
+
 
 //Unit test
 
