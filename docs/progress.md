@@ -14,7 +14,7 @@
 - [x] All Phase 2 tests pass
 
 ## Phase 3 — Wallets & Transactions
-- [ ] Key pair generation works
+- [x] Key pair generation works
 - [ ] Transaction struct defined
 - [ ] Signing and verification works
 - [ ] Mempool stores pending transactions
