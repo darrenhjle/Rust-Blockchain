@@ -1,6 +1,8 @@
 use crate::block::Block;
 use crate::transaction::Transaction;
 use serde::{Serialize, Deserialize};
+use std::fs;
+use std::path::Path;
 
 //Blockchain struct that holds a chain of blocks
 //Creates genesis block and validates the whole chain
@@ -48,6 +50,23 @@ impl Blockchain {
     }
 }
 
+//Save and load the chain from disk so state survives between runs
+
+impl Blockchain {
+    pub fn save(&self, path: &str) {
+        let json = serde_json::to_string_pretty(self).expect("Serialization failed");
+        fs::write(path, json).expect("Failed to write");
+    }
+
+    pub fn load(path: &str) ->Self {
+        if Path::new(path).exists() {
+            let json = fs::read_to_string(path).expect("Failed to read path");
+            serde_json::from_str(&json).expect("Failed to deserialize chain")
+        } else {
+            Self::new()
+        }
+    }
+}
 
 //#[cfg(test)]
 

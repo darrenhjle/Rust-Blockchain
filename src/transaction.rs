@@ -1,4 +1,4 @@
-use ed25519_dalek::{Signature, Signer, Verifier, VerifyingKey, ed25519::signature};
+use ed25519_dalek::{Signature, Verifier, VerifyingKey};
 use serde::{Serialize, Deserialize};
 use crate::wallet::Wallet;
 // Transactions and mempool
