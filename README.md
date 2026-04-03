@@ -137,7 +137,7 @@ See [docs/architecture.md](docs/architecture.md) for a full breakdown of each co
 ## Planned Extensions
 
 - P2P networking with tokio and TCP
-- Merkle tree for transaction integrity
+- ~~Merkle tree for transaction integrity~~ Done
 - UTXO-based balance model
 - Adjustable difficulty retargeting
 - REST API

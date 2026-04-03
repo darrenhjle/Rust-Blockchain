@@ -1,5 +1,6 @@
 use crate::block::Block;
 use crate::transaction::Transaction;
+use crate::merkle::compute_merkle_root;
 use serde::{Serialize, Deserialize};
 use std::fs;
 use std::path::Path;
@@ -32,10 +33,11 @@ impl Blockchain {
     }
 
     pub fn add_block(&mut self, transactions: Vec<Transaction>) {
-        let data = serde_json::to_string(&transactions).unwrap_or_default();
+        let tx_strings: Vec<String> = transactions.iter().map(|tx|serde_json::to_string(tx).unwrap_or_default()).collect();
+        let merkle_root = compute_merkle_root(&tx_strings);
         let prev_hash = self.last_block().hash.clone();
         let index = self.chain.len() as u64;
-        let mut block = Block::new(index, data, prev_hash);
+        let mut block = Block::new(index, merkle_root, prev_hash);
         block.mine(self.difficulty);
         self.chain.push(block);
     }

@@ -61,7 +61,7 @@ fn main() {
         }
         Commands::Print => {
             for block in &bc.chain {
-                println!("#{} | hash: {}... | data: {}", block.index, &block.hash[..8], &block.data[..block.data.len().min(40)]);
+                println!("#{} | hash: {}... | merkle_root: {}", block.index, &block.hash[..8], &block.merkle_root[..8]);
             }
         }
     }

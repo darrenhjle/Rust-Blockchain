@@ -2,83 +2,19 @@
   "chain": [
     {
       "index": 0,
-      "timestamp": 1775112237,
-      "data": "genesis",
+      "timestamp": 1775224701,
+      "merkle_root": "genesis",
       "nonce": 0,
       "prev_hash": "0",
-      "hash": "3d8d81c5c0719dd9fbc2a97602a6dfc4849f3b1c85a22685428756d5377ac400"
+      "hash": "ffcaeb4984e22f26dc8d1ce7dd5951f5a481c9abf8539a0e35698df0bd77f6fd"
     },
     {
       "index": 1,
-      "timestamp": 1775112237,
-      "data": "[]",
-      "nonce": 5618,
-      "prev_hash": "3d8d81c5c0719dd9fbc2a97602a6dfc4849f3b1c85a22685428756d5377ac400",
-      "hash": "0001ec48258338466f001b254db6877b66bd5095f61e29e83aea9855c8560fa1"
-    },
-    {
-      "index": 2,
-      "timestamp": 1775112328,
-      "data": "[]",
-      "nonce": 7183,
-      "prev_hash": "0001ec48258338466f001b254db6877b66bd5095f61e29e83aea9855c8560fa1",
-      "hash": "0003aeba9e5172ef164ab101c83f46dcc75e1441ee82b63d94735f0a30e4bfe7"
-    },
-    {
-      "index": 3,
-      "timestamp": 1775112651,
-      "data": "[]",
-      "nonce": 2129,
-      "prev_hash": "0003aeba9e5172ef164ab101c83f46dcc75e1441ee82b63d94735f0a30e4bfe7",
-      "hash": "000978e1b59d9de45d3361b0aa8f0341686566085f341e5e82e0fc57f827a350"
-    },
-    {
-      "index": 4,
-      "timestamp": 1775112697,
-      "data": "[]",
-      "nonce": 2085,
-      "prev_hash": "000978e1b59d9de45d3361b0aa8f0341686566085f341e5e82e0fc57f827a350",
-      "hash": "0000a795c4641076245469c3d158cb9608d4c9318420772c5972a75cb286a289"
-    },
-    {
-      "index": 5,
-      "timestamp": 1775113113,
-      "data": "[]",
-      "nonce": 2954,
-      "prev_hash": "0000a795c4641076245469c3d158cb9608d4c9318420772c5972a75cb286a289",
-      "hash": "00037308b907f2cc7a0afa16afacf1eebbaeeadff4cf7bf9f1d97a63e6125f3b"
-    },
-    {
-      "index": 6,
-      "timestamp": 1775113187,
-      "data": "[]",
-      "nonce": 8263,
-      "prev_hash": "00037308b907f2cc7a0afa16afacf1eebbaeeadff4cf7bf9f1d97a63e6125f3b",
-      "hash": "000a86b2a47ce986380a06282e363466d0627c128d49caf0792cef5d858ebda6"
-    },
-    {
-      "index": 7,
-      "timestamp": 1775113260,
-      "data": "[]",
-      "nonce": 397,
-      "prev_hash": "000a86b2a47ce986380a06282e363466d0627c128d49caf0792cef5d858ebda6",
-      "hash": "0000f94bd3569ebbba7e053d84d46244dba298f8838d6bccf772830fb59e2902"
-    },
-    {
-      "index": 8,
-      "timestamp": 1775115262,
-      "data": "[{\"sender\":\"dd6bf10d7a923828fe97835014d9c8b57b219be7ff7024fe690bdf4358c94105\",\"receiver\":\"b4d8790fb6ec3ed15a6170331769138cd1e3239e0e8c6c0abd738d6669c7ccf8\",\"amount\":5.0,\"signature\":[174,206,154,125,90,64,54,236,139,240,183,38,249,119,142,211,140,210,165,93,171,192,182,88,168,10,176,196,9,149,228,175,195,64,4,253,52,142,11,74,0,6,44,195,160,220,191,242,248,212,35,96,49,226,189,93,66,231,10,145,75,77,202,2]},{\"sender\":\"dd6bf10d7a923828fe97835014d9c8b57b219be7ff7024fe690bdf4358c94105\",\"receiver\":\"b4d8790fb6ec3ed15a6170331769138cd1e3239e0e8c6c0abd738d6669c7ccf8\",\"amount\":10.0,\"signature\":[171,59,204,144,227,175,216,51,169,17,114,110,164,122,200,62,174,203,123,33,79,57,89,93,0,214,40,240,205,169,236,111,211,207,210,139,4,201,251,200,190,129,169,78,199,84,245,109,30,135,108,128,51,132,212,253,180,132,60,198,6,32,124,0]}]",
-      "nonce": 394,
-      "prev_hash": "0000f94bd3569ebbba7e053d84d46244dba298f8838d6bccf772830fb59e2902",
-      "hash": "0002fd1d331a2cb414468851b1166449473fdd2383f237e1fce3a35affaeaf33"
-    },
-    {
-      "index": 9,
-      "timestamp": 1775116881,
-      "data": "[{\"sender\":\"2bda5ec665216b12218ea7edf75254b693eefc1b0d3ea7e7cca8c7e0d09f50d4\",\"receiver\":\"70116e3f5529ae655c7cfba1fd03837a716d493aed03f964eab7de6d3f8c789e\",\"amount\":50.0,\"signature\":[246,152,35,161,36,116,36,62,151,52,17,116,170,215,9,71,113,35,111,41,206,57,80,250,199,38,108,111,28,203,67,208,49,208,76,139,222,150,99,227,107,14,157,230,227,88,13,179,7,109,103,143,97,11,157,203,42,224,178,16,185,224,125,10]}]",
-      "nonce": 2064,
-      "prev_hash": "0002fd1d331a2cb414468851b1166449473fdd2383f237e1fce3a35affaeaf33",
-      "hash": "00012bffaacb2c9de7bac239baccd0c5376ee42369d24491e9547e711654b4f0"
+      "timestamp": 1775224701,
+      "merkle_root": "841718b576bd67929e7aa2b543a8fc382714fac982cc0eb4739c91b55416227f",
+      "nonce": 4891,
+      "prev_hash": "ffcaeb4984e22f26dc8d1ce7dd5951f5a481c9abf8539a0e35698df0bd77f6fd",
+      "hash": "0004a67d362a3ce195b93724537652081108d026d43fa97f6bc949928359a51b"
     }
   ],
   "difficulty": 3

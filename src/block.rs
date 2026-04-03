@@ -15,7 +15,7 @@ use chrono::Utc;
 pub struct Block {
     pub index: u64,
     pub timestamp: i64,
-    pub data: String,
+    pub merkle_root: String,
     pub nonce: u64,
     pub prev_hash: String,
     pub hash: String,
@@ -24,21 +24,21 @@ pub struct Block {
 //Create a block and compute its hash
 impl Block {
 
-    pub fn new(index: u64, data: String, prev_hash: String) -> Self {
+    pub fn new(index: u64, merkle_root: String, prev_hash: String) -> Self {
         let timestamp = Utc::now().timestamp();
         let nonce = 0;
-        let hash = Self::compute_hash(index, timestamp, &data, &prev_hash, nonce);
+        let hash = Self::compute_hash(index, timestamp, &merkle_root, &prev_hash, nonce);
 
-        Block {index, timestamp, data, nonce, prev_hash, hash }
+        Block {index, timestamp, merkle_root, nonce, prev_hash, hash }
     }
 
     pub fn compute_hash(index: u64, 
         timestamp: i64,
-        data: &str,
+        merkle_root: &str,
         prev_hash: &str,
         nonce: u64,
     ) -> String {
-        let input = format!("{}{}{}{}{}", index, timestamp, data, prev_hash, nonce);
+        let input = format!("{}{}{}{}{}", index, timestamp, merkle_root, prev_hash, nonce);
         let mut hasher = Sha256::new();
         hasher.update(input.as_bytes());
 
@@ -47,7 +47,7 @@ impl Block {
 
     pub fn is_valid(&self) -> bool {
         let expected = Self::compute_hash(
-            self.index, self.timestamp, &self.data, &self.prev_hash, self.nonce
+            self.index, self.timestamp, &self.merkle_root, &self.prev_hash, self.nonce
         );
 
         self.hash == expected
@@ -61,7 +61,7 @@ impl Block {
         let target = "0".repeat(difficulty);
         while !self.hash.starts_with(&target) {
             self.nonce += 1;
-            self.hash = Self::compute_hash(self.index, self.timestamp, &self.data, &self.prev_hash, self.nonce);
+            self.hash = Self::compute_hash(self.index, self.timestamp, &self.merkle_root, &self.prev_hash, self.nonce);
         }
         println!("Mined block {} | nonce: {} | hash: {}", self.index, self.nonce, &self.hash[..10]);
 
@@ -87,7 +87,7 @@ mod tests {
     #[test]
     fn test_tampered_block_is_invalid() {
         let mut block = Block::new(1, "data".to_string(), "abc".to_string());
-        block.data = "tampered".to_string(); // change data without recomputing hash
+        block.merkle_root = "tampered".to_string(); // change data without recomputing hash
         assert!(!block.is_valid());
     }
 }
