@@ -4,3 +4,4 @@ pub mod transaction;
 pub mod wallet;
 pub mod mempool;
 pub mod merkle;
+pub mod network;
