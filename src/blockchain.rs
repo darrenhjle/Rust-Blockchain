@@ -69,6 +69,9 @@ impl Blockchain {
     pub fn load(path: &str) ->Self {
         if Path::new(path).exists() {
             let json = fs::read_to_string(path).expect("Failed to read path");
+            if json.trim().is_empty() {
+                return Self::new();
+            }
             serde_json::from_str(&json).expect("Failed to deserialize chain")
         } else {
             Self::new()
